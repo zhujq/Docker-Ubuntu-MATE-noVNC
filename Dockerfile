@@ -31,3 +31,4 @@ COPY startup.sh $HOME
 
 EXPOSE 8080
 CMD ["/bin/bash", "/home/ubuntu/startup.sh"]
+
