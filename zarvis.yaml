@@ -3,4 +3,4 @@ deploy:
   skaffold: {}
 ingress:
   - serviceName: http-service
-    port: 8000
+    port: 8080
