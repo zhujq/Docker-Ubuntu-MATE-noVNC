@@ -16,7 +16,6 @@ RUN apt-get update \
         net-tools \
         curl \
         git \
-        pwgen \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
