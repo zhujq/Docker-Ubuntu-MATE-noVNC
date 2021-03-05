@@ -1,6 +1,0 @@
-apiVersion: beta/v1
-deploy:
-  skaffold: {}
-ingress:
-  - serviceName: http-service
-    port: 8080
