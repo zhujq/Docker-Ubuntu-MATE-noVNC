@@ -11,7 +11,7 @@ RUN adduser $USER --disabled-password
 RUN apt-get update \
     && apt-get install -y \
         tightvncserver \
-          zip unzip  inetutils-ping iproute2 lubuntu-desktop  net-tools curl chromium-browser su \
+          zip unzip  inetutils-ping iproute2 lubuntu-desktop  net-tools curl chromium-browser su gnome-panel \
         supervisor \
     && apt-get autoclean \
     && apt-get autoremove \
