@@ -11,11 +11,8 @@ RUN adduser $USER --disabled-password
 RUN apt-get update \
     && apt-get install -y \
         tightvncserver \
-        mate-core mate-desktop-environment mate-notification-daemon \
+         xfce4 xfce4-terminal wget net-tools curl chromium-browser openssh-client git \
         supervisor \
-        net-tools \
-        curl \
-        git \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
@@ -32,5 +29,5 @@ COPY supervisor.conf /etc/supervisor/conf.d/
 # Copy startup script.
 COPY startup.sh $HOME
 
-EXPOSE 6080 
+EXPOSE 8080
 CMD ["/bin/bash", "/home/ubuntu/startup.sh"]
