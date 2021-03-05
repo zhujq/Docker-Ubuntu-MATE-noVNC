@@ -11,7 +11,7 @@ RUN adduser $USER --disabled-password
 RUN apt-get update \
     && apt-get install -y \
         tightvncserver \
-          zip unzip  inetutils-ping iproute2 lubuntu-desktop wget net-tools curl chromium-browser openssh-client git \
+          zip unzip  inetutils-ping iproute2 lubuntu-desktop  net-tools curl chromium-browser su \
         supervisor \
     && apt-get autoclean \
     && apt-get autoremove \
@@ -28,6 +28,7 @@ COPY supervisor.conf /etc/supervisor/conf.d/
 
 # Copy startup script.
 COPY startup.sh $HOME
+COPY xsession $HOME/.xsession
 
 EXPOSE 8080
 CMD ["/bin/bash", "/home/ubuntu/startup.sh"]
