@@ -11,7 +11,7 @@ RUN adduser $USER --disabled-password
 RUN apt-get update \
     && apt-get install -y \
         tightvncserver \
-         xfce4 xfce4-terminal wget net-tools curl chromium-browser openssh-client git \
+          mate-core mate-desktop-environment mate-notification-daemon wget net-tools curl chromium-browser openssh-client git \
         supervisor \
     && apt-get autoclean \
     && apt-get autoremove \
