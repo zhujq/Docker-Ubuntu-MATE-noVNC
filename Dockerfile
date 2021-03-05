@@ -32,5 +32,5 @@ COPY supervisor.conf /etc/supervisor/conf.d/
 # Copy startup script.
 COPY startup.sh $HOME
 
-EXPOSE 6080 5901 
+EXPOSE 6080 
 CMD ["/bin/bash", "/home/ubuntu/startup.sh"]
