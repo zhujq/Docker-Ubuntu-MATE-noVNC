@@ -1,11 +1,13 @@
+  
 #!/bin/bash
-export USER=root
-mkdir -p /var/run/sshd
-nohup /usr/sbin/sshd -D &
-nohup vncserver :1 -geometry 1920x1080 -depth 24 && tail -F /root/.vnc/*.log &
-nohup /root/noVNC/utils/launch.sh --listen 8080 --vnc localhost:5901 &
+export DISPLAY=:1
+Xvfb :1 -screen 0 $SCREEN_SIZE &
+sleep 5
 
-dd if=/dev/zero of=/root/swapfile bs=1M count=1k
-chmod 600 /root/swapfile
-mkswap /root/swapfile
-swapon /root/swapfile
+openbox-session &
+sleep 2
+
+x11vnc -storepasswd $PASSWORD ~/.vnc/passwd
+
+x11vnc -usepw -display :1 -forever -bg -ncache 10 -rfbport 5901 &
+cd ~/noVNC && ./utils/launch.sh --listen 8080 --vnc localhost:5901
