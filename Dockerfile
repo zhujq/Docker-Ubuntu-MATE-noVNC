@@ -10,7 +10,7 @@ RUN adduser $USER --disabled-password
 # Install MATE and dependency component.
 RUN apt-get update \
     && apt-get install -y \
-        tightvncserver \
+        git tightvncserver \
         ubuntu-desktop \
         unity-lens-applications \
         gnome-panel \
