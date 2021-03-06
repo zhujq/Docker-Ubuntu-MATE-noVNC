@@ -11,11 +11,11 @@ RUN adduser $USER --disabled-password
 RUN apt-get update \
     && apt-get install -y \
         git tightvncserver \
-        ubuntu-desktop \
-        unity-lens-applications \
-        gnome-panel \
-        metacity \
-        nautilus \
+        mate-core mate-desktop-environment mate-notification-daemon \
+        supervisor \
+        net-tools \
+        curl \
+        git \
         gedit \
         xterm \
         supervisor sudo \
@@ -34,7 +34,6 @@ COPY supervisor.conf /etc/supervisor/conf.d/
 
 # Copy startup script.
 COPY startup.sh $HOME
-COPY xsession $HOME/.xsession
 
 EXPOSE 8080
 CMD ["/bin/bash", "/home/ubuntu/startup.sh"]
