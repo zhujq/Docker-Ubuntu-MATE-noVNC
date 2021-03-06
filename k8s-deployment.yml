@@ -21,7 +21,6 @@ spec:
         env:
            - name: VNC_RESOLUTION
              value: 1920x1080
-             user: 0
         resources:
             limits:
               cpu: 500m
