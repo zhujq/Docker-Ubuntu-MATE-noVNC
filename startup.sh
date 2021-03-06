@@ -1,21 +1,18 @@
 #!/bin/bash
 
-if [ ! -f $HOME/.vnc/passwd ] ; then
+if [ ! -f /root/.vnc/passwd ] ; then
 
     
     PASSWORD=ubuntu
-    echo "$USER:$PASSWORD" | chpasswd
+    echo "root:$PASSWORD" | chpasswd
 
     # Set up vncserver
-    su $USER -c "mkdir $HOME/.vnc && echo '$PASSWORD' | vncpasswd -f > $HOME/.vnc/passwd && chmod 600 $HOME/.vnc/passwd && touch $HOME/.Xresources"
-    chown -R $USER:$USER $HOME
-    adduser $USER sudo
-       
+    su $USER -c "mkdir /root/.vnc && echo '$PASSWORD' | vncpasswd -f > /root/.vnc/passwd && chmod 600 /root/.vnc/passwd && touch /root/.Xresources"
     
-
+       
 else
 
-    VNC_PID=`find $HOME/.vnc -name '*.pid'`
+    VNC_PID=`find /root/.vnc -name '*.pid'`
     if [ ! -z "$VNC_PID" ] ; then
         vncserver -kill :1
         rm -rf /tmp/.X1*

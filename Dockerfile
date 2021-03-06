@@ -1,10 +1,10 @@
 FROM ubuntu:18.04
 
-ADD run.sh /run.sh
+ADD startup.sh /startup.sh
 
 RUN  apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get install -y  git curl  zip unzip net-tools inetutils-ping iproute2 lubuntu-desktop  tightvncserver  \  
 && mkdir -p /var/run/sshd \
-&& echo 'root:root@1234' |chpasswd  \
+&& echo 'root:ubuntu' |chpasswd  \
 && mkdir /root/.ssh \
 && apt-get purge --auto-remove -y curl  \
 && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -23,5 +23,5 @@ Run git clone https://github.com/kanaka/websockify  /root/noVNC/utils/websockify
 
 
 EXPOSE 8080
-CMD ["/bin/bash", "/run.sh"]
+CMD ["/bin/bash", "/startup.sh"]
 
