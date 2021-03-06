@@ -1,6 +1,7 @@
 FROM ubuntu:18.04
 
 ADD startup.sh /startup.sh
+COPY supervisor.conf /etc/supervisor/conf.d/
 
 RUN  apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get install -y  git curl  zip unzip net-tools inetutils-ping iproute2 lubuntu-desktop  tightvncserver  \  
 && mkdir -p /var/run/sshd \
