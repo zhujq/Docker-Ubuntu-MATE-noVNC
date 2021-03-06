@@ -1,4 +1,5 @@
-FROM dorowu/ubuntu-desktop-lxde-vnc:bionic-lxqt
+FROM consol/ubuntu-xfce-vnc
 
 
-EXPOSE 80
+
+EXPOSE 6901

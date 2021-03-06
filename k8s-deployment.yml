@@ -16,12 +16,11 @@ spec:
       - name: ub-novnc
         image: zhujq/ub-novnc
         ports:
-            - containerPort: 80
+            - containerPort: 6901
               protocol: TCP
-        args: [
-          "-e", "VNC_PASSWORD=ubuntu",
-          "-e", “RESOLUTION=1920x1080”
-        ]
+        env:
+           - name: VNC_RESOLUTION
+             value: 1920x1080
         resources:
             limits:
               cpu: 500m
