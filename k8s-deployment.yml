@@ -15,8 +15,10 @@ spec:
       containers:
       - name: ub-novnc
         image: zhujq/ub-novnc
+        ports:
+            - containerPort: 80
+              protocol: TCP
         args: [
-          "-p", "8080:80",
           "-e", "VNC_PASSWORD=ubuntu",
           "-e", “RESOLUTION=1920x1080”
         ]
