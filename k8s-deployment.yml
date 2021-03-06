@@ -15,6 +15,11 @@ spec:
       containers:
       - name: ub-novnc
         image: zhujq/ub-novnc
+        args: [
+          "-p", "8080:80",
+          "-e", "VNC_PASSWORD=ubuntu",
+          "-e", “RESOLUTION=1920x1080”
+        ]
         resources:
             limits:
               cpu: 500m
