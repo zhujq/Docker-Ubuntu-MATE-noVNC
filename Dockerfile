@@ -1,28 +1,15 @@
-FROM ubuntu:18.04
+FROM ubuntu:16.04
 
-ADD startup.sh /startup.sh
+ENV DEBIAN_FRONTEND noninteractive
+ENV USER ubuntu
+ENV HOME /home/$USER
+
+RUN  adduser $USER --disabled-password \
+&& apt-get -y update &&  apt-get install -y  git curl  zip unzip net-tools inetutils-ping iproute2 lubuntu-desktop  tightvncserver  \  
+&& git clone https://github.com/novnc/noVNC.git  $HOME/noVNC \
+&&  git clone https://github.com/kanaka/websockify  $HOME/noVNC/utils/websockify
+
 COPY supervisor.conf /etc/supervisor/conf.d/
-
-RUN  apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get install -y  git curl  zip unzip net-tools inetutils-ping iproute2 lubuntu-desktop  tightvncserver  \  
-&& mkdir -p /var/run/sshd \
-&& echo 'root:ubuntu' |chpasswd  \
-&& mkdir /root/.ssh \
-&& apt-get purge --auto-remove -y curl  \
-&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-WORKDIR /root/
-COPY xstartup /root/.vnc/
-RUN mkdir -p /root/.vnc && chmod a+x /root/.vnc/xstartup && touch /root/.vnc/passwd \
-&& /bin/bash -c "echo -e 'password\npassword\nn' | vncpasswd" > /root/.vnc/passwd \
-&& chmod 400 /root/.vnc/passwd && chmod go-rwx /root/.vnc && touch /root/.Xauthority
-
-# Clone noVNC.
-RUN git clone https://github.com/novnc/noVNC.git  /root/noVNC
-
-# Clone websockify for noVNC
-Run git clone https://github.com/kanaka/websockify  /root/noVNC/utils/websockify
-
-
+COPY startup.sh $HOME
 EXPOSE 8080
-CMD ["/bin/bash", "/startup.sh"]
-
+CMD ["/bin/bash", "/home/ubuntu/startup.sh"]
