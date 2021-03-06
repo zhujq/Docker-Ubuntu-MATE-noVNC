@@ -1,4 +1,4 @@
 FROM dorowu/ubuntu-desktop-lxde-vnc:bionic-lxqt
 
 
-EXPOSE 8080
+EXPOSE 80
